@@ -1,5 +1,5 @@
 <template>
-  <div @click="increment">{{ count }}</div>
+  <el-button @click="increment">{{ count }}</el-button>
 </template>
 
 <script setup lang="ts" name="My">
