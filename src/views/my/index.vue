@@ -1,11 +1,14 @@
 <template>
-  <div>{{ msg }}</div>
+  <div @click="increment">{{ count }}</div>
 </template>
 
 <script setup lang="ts" name="My">
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCounterStore } from 'store/count.ts'
 
-const msg = ref('my')
+const store = useCounterStore()
+const { count } = storeToRefs(store)
+const { increment } = store
 </script>
 
 <style lang="scss" scoped>
