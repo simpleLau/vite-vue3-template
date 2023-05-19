@@ -11,6 +11,4 @@ const { count } = storeToRefs(store)
 const { increment } = store
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
