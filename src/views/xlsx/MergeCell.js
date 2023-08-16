@@ -17,10 +17,11 @@ export default class MergeCell {
     this.#size = this.getCellsSize(headers)
     this.getBodyMapList(headers)
     this.mergeHeadersCell(headers, 0, 0)
-    this.getHeadersValue(headers, 0, 0)
+    this.getHeadersValue(headers, 0, 0, this.getCellsSize(headers))
     this.bodyValue = data.map((item) =>
       this.bodyMapList.map((key) => item[key])
     )
+    this.headerValue.pop()
     this.deep = this.getDeep(headers)
   }
 
@@ -73,9 +74,14 @@ export default class MergeCell {
   }
 
   /** 表头赋值 */
-  getHeadersValue(headers, row, col) {
+  getHeadersValue(headers, row, col, size) {
     if (!this.headerValue[row]) {
       this.headerValue[row] = new Array(col).fill('')
+    }
+    if (!headers?.length) {
+      this.headerValue[row].push('')
+      row < size[0] && this.getHeadersValue(null, row + 1, col + 1, size)
+      return
     }
     for (let i = 0, len = headers.length; i < len; i++) {
       const cell = headers[i]
@@ -84,8 +90,8 @@ export default class MergeCell {
         const len = this.getCellsSize(cell.children)[1]
         const emptyNameList = new Array(len).fill('')
         this.headerValue[row].push(...emptyNameList)
-        this.getHeadersValue(cell.children, row + 1, col + i)
       }
+      this.getHeadersValue(cell.children, row + 1, col + i, size)
     }
   }
 
