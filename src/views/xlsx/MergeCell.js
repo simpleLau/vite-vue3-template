@@ -80,7 +80,7 @@ export default class MergeCell {
     }
     if (!headers?.length) {
       this.headerValue[row].push('')
-      row < size[0] && this.getHeadersValue(null, row + 1, col + 1, size)
+      row < size[0] && this.getHeadersValue(null, row + 1, col, size)
       return
     }
     for (let i = 0, len = headers.length; i < len; i++) {
