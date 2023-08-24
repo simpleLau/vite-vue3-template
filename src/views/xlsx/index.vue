@@ -11,7 +11,7 @@ const mergedCells = [
     name: '导出说明：',
     children: [
       {
-        field: 'vtsCode',
+        prop: 'vtsCode',
         name: '指标代码',
         width: 180,
         slots: {
@@ -21,13 +21,21 @@ const mergedCells = [
         fixed: 'left'
       },
       {
-        field: 'vtsName',
+        prop: 'vtsName',
         name: '指标名称',
         width: 200,
         fixed: 'left'
       },
       {
-        field: 'concept',
+        prop: 'indexLevel',
+        name: '指标级别',
+        width: 80,
+        slots: {
+          default: 'indexLevel_edit'
+        }
+      },
+      {
+        prop: 'concept',
         name: '主/客观(Sv/Sd/O)',
         width: 70,
         slots: {
@@ -36,15 +44,7 @@ const mergedCells = [
         fixed: 'left'
       },
       {
-        field: 'indexLevel',
-        name: '指标级别',
-        width: 80,
-        slots: {
-          default: 'indexLevel_edit'
-        }
-      },
-      {
-        field: 'applyModel',
+        prop: 'applyModel',
         name: '能源类型',
         width: 160,
         slots: {
@@ -52,7 +52,7 @@ const mergedCells = [
         }
       },
       {
-        field: 'units',
+        prop: 'units',
         name: '单位',
         width: 60,
         slots: {
@@ -60,7 +60,7 @@ const mergedCells = [
         }
       },
       {
-        field: 'standardWay',
+        prop: 'standardWay',
         name: '达标方式',
         width: 80,
         slots: {
@@ -68,9 +68,9 @@ const mergedCells = [
         }
       },
       {
-        field: 'configParme',
+        prop: 'configParme',
         name: '目标设定参考原则',
-        width: 140,
+        width: 120,
         editRender: {
           autofocus: '.vxe-input--inner'
         },
@@ -80,7 +80,7 @@ const mergedCells = [
         }
       },
       {
-        field: 'isPlatformControl',
+        prop: 'isPlatformControl',
         name: '是否平台管控',
         width: 60,
         slots: {
@@ -91,19 +91,27 @@ const mergedCells = [
         name: '平台带宽',
         children: [
           {
-            field: 'bandwidthMin',
-            name: '带宽-',
-            width: 75
+            prop: 'bandwidthMin',
+            name: '平台带宽-',
+            width: 100
           },
           {
-            field: 'bandwidthMax',
-            name: '带宽+',
-            width: 75
+            prop: 'bandwidthMax',
+            name: '平台带宽+',
+            width: 100
           }
         ]
       },
       {
-        field: 'latb',
+        prop: 'latbSwitch',
+        name: '商品性设定目标',
+        width: 100,
+        slots: {
+          default: 'latbSwitch_default'
+        }
+      },
+      {
+        prop: 'latb',
         name: '商品性目标',
         width: 100,
         editRender: {
@@ -115,7 +123,7 @@ const mergedCells = [
         }
       },
       {
-        field: 'recommendValue',
+        prop: 'recommendValue',
         name: '智能推荐值',
         width: 100,
         slots: {
@@ -123,11 +131,11 @@ const mergedCells = [
         }
       },
       {
-        name: '目标(G6)',
+        name: '目标G6',
         children: [
           {
             name: 'ICE 1.5T MT',
-            field: 'targetValue0',
+            prop: 'targetValue0',
             editRender: {
               autofocus: '.vxe-input--inner',
               autoselect: true
@@ -144,183 +152,80 @@ const mergedCells = [
         ]
       },
       {
-        name: '目标(G5)',
+        name: '基础车',
         children: [
           {
-            name: 'ICE 1.5T MT',
-            field: 'targetValue0',
-            editRender: {
-              autofocus: '.vxe-input--inner',
-              autoselect: true
-            },
-            width: 110,
+            name: 'ICE 2.5T MT',
+            prop: 'baseValue0',
+            width: 130,
             slots: {
-              edit: 'content_edit',
-              default: 'content_default',
+              default: 'base_default',
+              baseId: 722,
               index: 0,
-              type: 'powertrain',
+              type: 'base',
               showEnergy: '1'
             }
           }
         ]
       },
       {
-        field: 'managerName',
+        name: '对标车',
+        children: [
+          {
+            name: '测试测试车型 ICE 1 MT',
+            prop: 'beachValue',
+            editRender: {
+              autofocus: '.vxe-input--inner',
+              autoselect: true
+            },
+            width: 130,
+            slots: {
+              edit: 'beach_edit',
+              default: 'beach_default',
+              modelId: 31,
+              type: 'beach',
+              showEnergy: '1'
+            }
+          }
+        ]
+      },
+      {
+        prop: 'managerName',
         name: '专业经理(开发)',
         width: 90
       },
       {
-        field: 'domainName',
+        prop: 'domainName',
         name: '性能工程师',
         width: 90
       },
       {
-        field: 'deptName',
+        prop: 'deptName',
         name: '责任部门',
         width: 80
       },
       {
-        field: 'designCriteria',
+        prop: 'designCriteria',
         name: '设计标准',
         width: 80
       },
       {
-        field: 'labelName',
+        prop: 'labelName',
         name: '标签',
         width: 150,
         slots: {
           default: 'labelName_default'
         }
-      },
-      {
-        name: '评估结果(G3)',
-        children: [
-          {
-            name: 'ICE 1.5T MT',
-            children: [
-              {
-                field: 'targetValue0',
-                name: '目标值',
-                width: 110,
-                slots: {
-                  default: 'content_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'simulationTest0',
-                name: '仿真/试验结果',
-                width: 150,
-                slots: {
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'evalValue0',
-                name: '评估结果',
-                width: 120,
-                slots: {
-                  default: 'evalValue_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'reach0',
-                name: '是否达成',
-                width: 120,
-                slots: {
-                  default: 'reach_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'risk0',
-                name: '风险说明',
-                width: 120,
-                slots: {
-                  default: 'risk_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        name: '评估结果(G4)',
-        children: [
-          {
-            name: 'ICE 1.5T MT',
-            children: [
-              {
-                field: 'targetValue0',
-                name: '目标值',
-                width: 110,
-                slots: {
-                  default: 'content_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'simulationTest0',
-                name: '仿真/试验结果',
-                width: 150,
-                slots: {
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'evalValue0',
-                name: '评估结果',
-                width: 120,
-                slots: {
-                  default: 'evalValue_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'reach0',
-                name: '是否达成',
-                width: 120,
-                slots: {
-                  default: 'reach_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              },
-              {
-                field: 'risk0',
-                name: '风险说明',
-                width: 120,
-                slots: {
-                  default: 'risk_default',
-                  index: 0,
-                  type: 'powertrain',
-                  showEnergy: '1'
-                }
-              }
-            ]
-          }
-        ]
       }
     ]
+  },
+  {
+    prop: 'labelName',
+    name: '标签',
+    width: 150,
+    slots: {
+      default: 'labelName_default'
+    }
   }
 ]
 

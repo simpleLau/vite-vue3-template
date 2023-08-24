@@ -21,7 +21,6 @@ export default class MergeCell {
     this.bodyValue = data.map((item) =>
       this.bodyMapList.map((key) => item[key])
     )
-    this.headerValue.pop()
     this.deep = this.getDeep(headers)
   }
 
@@ -76,6 +75,7 @@ export default class MergeCell {
   /** 表头赋值 */
   getHeadersValue(headers, row, col, size) {
     if (!this.headerValue[row]) {
+      if (row > size[0]) return
       this.headerValue[row] = new Array(col).fill('')
     }
     if (!headers?.length) {
